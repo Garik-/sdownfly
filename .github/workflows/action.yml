@@ -9,7 +9,7 @@ permissions:
     contents: read
 
 jobs:
-    ci_job:
+    lint_job:
         name: lint
         runs-on: ubuntu-latest
         steps:
@@ -20,4 +20,17 @@ jobs:
                   node-version: 25.2.1
                   cache: "npm"
             - run: npm ci
-            - run: npm run lint
+            - run: npm run lint:ci
+
+    format_job:
+        name: check formatting
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use Node.js 25.2.1
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 25.2.1
+                  cache: "npm"
+            - run: npm ci
+            - run: npm run format:ci
