@@ -7,7 +7,7 @@
     "dev": "bash -c 'set -a && source .env && set +a && node src/app.js'",
     "lint": "eslint . --fix",
     "format:ci": "prettier --check src/",
-    "lint:ci": "eslint --fix",
+    "lint:ci": "eslint .",
     "format": "prettier --write src/"
   },
   "keywords": [],
