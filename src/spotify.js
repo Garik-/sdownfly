@@ -97,10 +97,18 @@ export async function init() {
   })
 
   return {
+    /**
+     * Get a playlist owned by a Spotify user.
+     * @param {string} id - The Spotify ID of the playlist. Example: 3cEYpjA9oz9GiPac4AsH4n
+     * @param {string} fields - Filters for the query: a comma-separated list of the fields to return. If omitted, all fields are returned.
+     * @link https://developer.spotify.com/documentation/web-api/reference/get-playlist
+     */
     playlists: (id, fields = '') => {
       return api(`playlists/${id}`, {
         params: fields ? { fields } : {},
       })
     },
+
+    // TODO: add track  https://developer.spotify.com/documentation/web-api/reference/get-track
   }
 }

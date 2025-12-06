@@ -1,16 +1,23 @@
 'use strict'
-import { init } from './spotify.js'
+// import { init } from './spotify.js'
+
+import { music } from './jackett.js'
+import { save } from './data.js'
 
 async function main() {
   try {
-    const spotify = await init()
-    console.log('Spotify initialized successfully:', spotify)
+    // const spotify = await init()
+    // console.log('Spotify initialized successfully:', spotify)
+    // const p = await spotify.playlists(
+    //   '1Ae90mOdJjXwupOpEkdMma',
+    //   'tracks.items(track(name,disc_number,track_number,artists(name),album(name,release_date)))',
+    // )
+    // console.log('Playlist data:', JSON.stringify(p, null, 2))
 
-    const p = await spotify.playlists(
-      '1Ae90mOdJjXwupOpEkdMma',
-      'tracks.items(track(name,disc_number,track_number,artists(name),album(name,release_date)))',
-    )
-    console.log('Playlist data:', JSON.stringify(p, null, 2))
+    const results = await music({ artist: 'Trivium', album: 'Shogun',year:'2008', q: 'Trivium Shogun 2008' })
+    await save('jackett_results.json', results)
+    console.log('Jackett search completed. Results saved to jackett_results.json')
+
   } catch (err) {
     console.error('Error during initialization:', err)
     process.exit(1)
